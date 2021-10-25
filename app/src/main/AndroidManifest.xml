@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.devramisha.handsomeme">
 
-    <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> -->
+     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera.any" />
 
     <!--    <protected-broadcast android:name="android.intent.action.MEDIA_MOUNTED" />-->
 
@@ -22,6 +23,18 @@
         <activity android:name=".Activities.HelpFeedBackActivity" />
         <activity android:name=".Activities.SettingsActivity" />
         <activity android:name=".Activities.DesignActivity"/>
+
+        <activity
+            android:name=".Activities.MainActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
 
     </application>
 

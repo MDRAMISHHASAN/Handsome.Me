@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "288250918681",
+    "project_id": "handsome-me",
+    "storage_bucket": "handsome-me.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:288250918681:android:80e4ccf77c31df7c57b788",
+        "android_client_info": {
+          "package_name": "com.devramisha.handsomeme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "288250918681-hep1cn5l7d0uia85lesl9c1kjbhafbgp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdu--bf-pz73lNo6h4h_2zMCy8O1i_VbM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "288250918681-hep1cn5l7d0uia85lesl9c1kjbhafbgp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -23,6 +23,7 @@ import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.Preview;
 //import androidx.camera.extensions.HdrImageCaptureExtender;
+import androidx.camera.extensions.HdrImageCaptureExtender;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.cardview.widget.CardView;
@@ -63,9 +64,11 @@ public class MainActivity extends AppCompatActivity{
 
         if (allPermissionsGranted()) {
             startCamera(); //start camera if permission has been granted by user
-            Log.i("startCamera", "MainActivity -> onCreate: permission has been not granted by user");
+            Log.i("startCamera", "MainActivity -> onCreate: permission has been granted by user");
         } else {
-            ActivityCompat.requestPermissions(this, PermissionUtils.REQUIRED_PERMISSION, PermissionUtils.PERMISSION_REQUEST_CODE);
+            ActivityCompat.requestPermissions(this, PermissionUtils.REQUIRED_PERMISSION,
+                    PermissionUtils.PERMISSION_REQUEST_CODE);
+            Log.i("startCamera", "MainActivity -> onCreate : Requesting for permission by user");
         }
         pickImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,12 +116,11 @@ public class MainActivity extends AppCompatActivity{
                 } catch (ExecutionException | InterruptedException e) {
                     // No errors need to be handled for this Future.
                     // This should never be reached.
-                    Log.i("ExecuExcepOrInterExcep", e.getMessage());
+                    Log.i("ExecuExcepOrInterExcep", String.valueOf(e.getStackTrace()));
                 }
             }
         }, ContextCompat.getMainExecutor(this));
     }
-
 
     void bindPreview(@NonNull ProcessCameraProvider cameraProvider) {
         Preview preview = new Preview.Builder()
@@ -180,7 +182,6 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -213,6 +214,7 @@ public class MainActivity extends AppCompatActivity{
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == PermissionUtils.PERMISSION_REQUEST_CODE) {
             if (allPermissionsGranted()) {
                 startCamera();
@@ -220,14 +222,15 @@ public class MainActivity extends AppCompatActivity{
             } else {
                 displayNeverAskAgainDialog();
                 Toast.makeText(this, "Permissions not granted by the user.", Toast.LENGTH_SHORT).show();
-              //  this.finish();
+                //  this.finish();
             }
         }
     }
 
     public void displayNeverAskAgainDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setMessage("We need to capture & save Image for performing necessary task. Please permit the permission through "
+        builder.setMessage("We need to capture & save Image for performing necessary task. " +
+                "Please permit the permission through "
                 + "Settings screen.\n\nSelect Permissions -> Enable permission");
         builder.setCancelable(false);
         builder.setPositiveButton("Permit Manually", new DialogInterface.OnClickListener() {
@@ -249,7 +252,5 @@ public class MainActivity extends AppCompatActivity{
         });
         builder.show();
     }
-
-
 
 }
